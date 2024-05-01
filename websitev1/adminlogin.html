@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spritbolaget</title>
+<link rel='stylesheet' href='css/woocommerce-layout.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+<link rel='stylesheet' href='css/woocommerce.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='css/font-awesome.min.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='style.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
+<link rel='stylesheet' href='css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+</head>
+
+
+
+<body class="home page page-template page-template-template-portfolio page-template-template-portfolio-php">
+<div id="page">
+	<div class="container">
+		<header id="masthead" class="site-header">
+		<div class="site-branding">
+			<h1 href="frontpage.html" rel="home">Spritbolaget Administratör</a></h1>
+          
+		</header>
+		<!-- #masthead -->
+		<div id="content" class="site-content">
+			<div id="primary" class="content-area column full">
+				<main id="main" class="site-main">
+				<article id="post-39" class="post-39 page type-page status-publish hentry">
+				<header class="entry-header">
+				<h1 class="entry-title">Logga in  <a  href="login.html" style="padding-left: 700px;vertical-align: middle" >Tillbaka </a>  </h1>
+				<br>
+
+				<?php
+				ob_start();
+				session_start();
+			 ?>
+			 
+			 <?
+				// error_reporting(E_ALL);
+				// ini_set("display_errors", 1);
+			 ?>
+			 
+			 <html lang = "en">
+				
+				<head>
+				   <title>Tutorialspoint.com</title>
+				
+				   <style>
+					
+					  .form-signin {
+						 max-width: 330px;
+						 padding: 15px;
+						 margin: 0 auto;
+					  }
+					  
+					  .form-signin .form-signin-heading,
+					  .form-signin .checkbox {
+						 margin-bottom: 10px;
+					  }
+					  
+					  .form-signin .checkbox {
+						 font-weight: normal;
+					  }
+					  
+					  .form-signin .form-control {
+						 position: relative;
+						 height: auto;
+						 -webkit-box-sizing: border-box;
+						 -moz-box-sizing: border-box;
+						 box-sizing: border-box;
+						 padding: 10px;
+						 font-size: 16px;
+					  }
+					  
+					  .form-signin .form-control:focus {
+						 z-index: 2;
+					  }
+					  
+					  .form-signin input[type="email"] {
+						 margin-bottom: -1px;
+						 border-bottom-right-radius: 0;
+						 border-bottom-left-radius: 0;
+						 
+					  }
+					  
+					  .form-signin input[type="password"] {
+						 margin-bottom: 10px;
+						 border-top-left-radius: 0;
+						 border-top-right-radius: 0;
+						
+					  }
+					  
+					  
+					  
+					  h2{
+						 text-align: center;
+						
+					  }
+				   </style>
+				   
+				</head>
+				 
+				<body>
+				   
+				  
+					  
+					  <?php
+						 $msg = '';
+						 
+						 if (isset($_POST['login']) && !empty($_POST['username']) 
+							&& !empty($_POST['password'])) {
+							 
+							if ($_POST['username'] == 'tutorialspoint' && 
+							   $_POST['password'] == '1234') {
+							   $_SESSION['valid'] = true;
+							   $_SESSION['timeout'] = time();
+							   $_SESSION['username'] = 'tutorialspoint';
+							   
+							   echo 'You have entered valid use name and password';
+							}else {
+							   $msg = 'Wrong username or password';
+							}
+						 }
+					  ?>
+				   </div> <!-- /container -->
+				   
+				   <div class = "container">
+				   
+					  <form class = "form-signin" role = "form" 
+						 action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']); 
+						 ?>" method = "post">
+						 <h4 class = "form-signin-heading"><?php echo $msg; ?></h4>
+						 <input type = "text" class = "form-control" 
+							name = "username" placeholder = "username = tutorialspoint" 
+							required autofocus></br>
+						 <input type = "password" class = "form-control"
+							name = "password" placeholder = "password = 1234" required>
+						 <button class = "btn btn-lg btn-primary btn-block" type = "submit" 
+							name = "login">Login</button>
+					  </form>
+						 
+					  Click here to clean <a href = "logout.php" tite = "Logout">Session.
+					  
+				   </div> 
+				   
+				</body>
+			 </html>
+
+
+
+
+
+
+
+
+				</header>
+				
+				</article>
+				</main>
+				<!-- #main -->
+			</div>
+			<!-- #primary -->
+		</div>
+		<!-- #content -->
+	
+	</div>
+<!-- .container -->
+<footer id="colophon" class="site-footer">
+	<div class="container">
+		<div class="site-info">
+			 <a target="blank" >&copy; LTU-projekt 2021</a>
+		</div>
+	</div>	
+	</footer>
+	<a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
+</div>
+<!-- #page -->
+<script src='js/jquery.js'></script>
+<script src='js/plugins.js'></script>
+<script src='js/scripts.js'></script>
+<script src='js/masonry.pkgd.min.js'></script>
+</body>
+</html>

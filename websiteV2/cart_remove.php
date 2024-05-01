@@ -1,0 +1,9 @@
+<?php
+    $con=mysqli_connect("utbweb.its.ltu.se", "19990310", "19990310", "db19990310") or die(mysqli_error($con));
+    session_start();
+    $item_id=$_GET['id'];
+    $user_id=$_SESSION['id'];
+    $delete_query="delete from cart_data where user_id='$user_id' and item_id='$item_id'";
+    $delete_query_result=mysqli_query($con,$delete_query) or die(mysqli_error($con));
+    header('location: cart.php');
+?>

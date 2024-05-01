@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Spritbolaget</title>
+	<link rel='stylesheet' href='css/woocommerce-layout.css' type='text/css' media='all' />
+	<link rel='stylesheet' href='css/woocommerce-smallscreen.css' type='text/css'
+		media='only screen and (max-width: 768px)' />
+	<link rel='stylesheet' href='css/woocommerce.css' type='text/css' media='all' />
+	<link rel='stylesheet' href='css/font-awesome.min.css' type='text/css' media='all' />
+	<link rel='stylesheet' href='style.css' type='text/css' media='all' />
+	<link rel='stylesheet'
+		href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700'
+		type='text/css' media='all' />
+	<link rel='stylesheet' href='css/easy-responsive-shortcodes.css' type='text/css' media='all' />
+</head>
+
+<body class="single single-product woocommerce woocommerce-page">
+	<div id="page">
+		<div class="container">
+			<header id="masthead" class="site-header">
+				<div class="site-branding">
+					<h1 href="index.html" rel="home">Spritbolaget</a></h1>
+					<a href="login.html" style="padding-left: 700px;vertical-align: middle">LOGGA IN </a>
+					<!--  logga in!-->
+					<a href="create_account.html" style="padding-left: 700px;vertical-align: middle">SKAPA KONTO</a>
+					<!--  skapa konto!-->
+					<div class="menu-menu-1-container">
+
+
+					</div>
+					<nav id="site-navigation" class="main-navigation">
+						<button class="menu-toggle">Menu</button>
+						<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+						<div class="menu-menu-1-container">
+							<ul id="menu-menu-1" class="menu">
+								<li><a href="index.html">Hem</a></li>
+								<li><a href="allproducts.html">Alla produkter</a></li>
+								<li><a href="review.html">Omdömen</a></li>
+								<li><a href="cart.html">Kundvagn</a></li>
+							</ul>
+						</div>
+					</nav>
+			</header>
+			<!-- #masthead -->
+			<div id="content" class="site-content">
+				<div id="primary" class="content-area column full">
+					<main id="main" class="site-main" role="main">
+						<div id="container">
+							<div id="content" role="main">
+
+
+								<!-- Get the all the information for product nr 1 from the database and store them down under in variables -->
+							<?php      
+							$host="utbweb.its.ltu.se";
+							$user="19990310";
+							$password="19990310";
+							$db="db19990310";
+							
+							$mysqli = mysqli_connect($host,$user,$password);
+							mysqli_select_db($mysqli, $db);
+
+
+								$query = "SELECT * FROM product WHERE Product_id = '5'";
+
+								if ($result = $mysqli->query($query)) {
+
+    							/* fetch associative array */
+   							    while ($row = $result->fetch_assoc()) {
+        						$id = $row["Product_id"];
+        						$name = $row["Product_name"];
+        						$stock = $row["Stock_quantity"];
+       							$percentage = $row["Percentage"];
+       							$color = $row["Color"];
+								$picture = $row["picture"];
+								$price = $row["Price"];
+								$descript = $row["description"];
+
+   									 }
+
+    								$result->free();
+}
+?>
+							
+
+									<div itemscope itemtype="http://schema.org/Product" class="product">
+										<div class="images">
+											<a href="" itemprop="image" class="woocommerce-main-image zoom" title=""
+												data-rel="prettyPhoto">
+												<img src= <?php echo $picture; ?> </img></a> <!-- Länk från databas!!!!-->
+											
+										</div>
+										<div class="summary entry-summary">
+											<h1 itemprop="name" class="product_title entry-title"><?php echo $name; ?> </h1><!-- Länk från databas!!!!-->
+											<div class="woocommerce-product-rating" itemprop="aggregateRating" itemscope
+												itemtype="http://schema.org/AggregateRating">
+
+											</div>
+											<div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+												<p class="price">
+													<span class="amount"><?php echo $price; ?> Kr </span> <!-- Länk från databas!!!!-->
+												
+												<p class="percentage">
+													<span class="percentage"><?php echo $percentage; ?> % </span> <!-- Länk från databas!!!!-->
+												</p>
+												<p class="quantity">
+													<span class="quantity"> Antal på lager: <?php echo $stock; ?> st </span> <!-- Länk från databas!!!!-->
+												</p>
+
+											</div>
+											
+											<form class="cart" method="post" enctype='multipart/form-data'>
+
+												<button type="submit" class="single_add_to_cart_button button alt">Lägg
+													till
+													i kundvagn</button>
+												<!-- Fixa så knappen lägger till en av dessa i kundvagnen-->
+											</form>
+											<div class="product_meta">
+
+												</span>
+											</div>
+										</div>
+										<!-- .summary -->
+										<div class="woocommerce-tabs wc-tabs-wrapper">
+											<div class="panel entry-content wc-tab" id="tab-description">
+												<h2>Produktbeskrivning</h2>
+												<!-- Länk från databas för beskrivningen!!!!-->
+												<p>
+													<?php echo $descript; ?>
+												</p>
+											</div>
+											<div class="panel entry-content wc-tab" id="tab-reviews">
+												<div id="reviews">
+													<div id="comments">
+														<h2>Omdömen för produkten:</h2>
+														<ol class="commentlist">
+															<?php      
+														
+																$queryReview = "SELECT * FROM review WHERE Product = 'Vodka'";
+								
+																if ($result = $mysqli->query($queryReview)) {
+								
+																/* fetch associative array */
+																   while ($row = $result->fetch_assoc()) {
+																$name = $row["Name"];
+																$text = $row["Review_text"];
+																$rating = $row["Rating"]; ?> 
+																
+																<li itemprop="review" itemscope
+																itemtype="http://schema.org/Review" class="comment">
+								
+																
+																<div id="comment-3" class="comment_container">
+
+																	<div class="comment-text">
+																		<p class="meta">
+																			<!-- Länk från databas för Namn på den som lagt review!!!!-->
+																			<strong itemprop="author"> <?php echo $name ?> </strong>
+																			<br>
+																			<!-- Länk från databas för rating!!!!-->
+																			<strong itemprop="Rating"> Betyg: <?php echo $rating ?> </strong>
+																		</p>
+																		<div itemprop="description" class="description">
+																				<p>
+
+																				<!-- Länk från databas för review text!!!!-->
+																				<?php echo $text; ?>
+																				
+																			</p>
+																		</div>
+																	</div>
+																</div>
+															</li>
+																<?php
+																
+																		}
+								
+																	
+								}
+								?>
+															
+															<!-- #comment-## -->
+
+
+														</ol>
+													</div>
+
+													<div class="clear">
+													</div>
+												</div>
+											</div>
+										</div>
+
+									</div>
+							</div>
+						</div>
+					</main>
+					<!-- #main -->
+				</div>
+				<!-- #primary -->
+			</div>
+			<!-- #content -->
+		</div>
+		<!-- .container -->
+		<footer id="colophon" class="site-footer">
+			<div class="container">
+				<div class="site-info">
+					<a target="blank">&copy; LTU-projekt 2021</a>
+				</div>
+			</div>
+		</footer>
+		<a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
+	</div>
+	<!-- #page -->
+	<script src='js/jquery.js'></script>
+	<script src='js/plugins.js'></script>
+	<script src='js/scripts.js'></script>
+	<script src='js/masonry.pkgd.min.js'></script>
+</body>
+
+</html>
